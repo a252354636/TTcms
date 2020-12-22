@@ -28,8 +28,7 @@ using Microsoft.Owin;
 
 using static TTcms.Web.Setting;
 using TTcms.EFRepositories;
-using TTcms.Web.Code.Authorize;
-using TTcms.Web.Code.OAuth;
+
 
 namespace TTcms.Web.Code
 {
@@ -58,10 +57,7 @@ namespace TTcms.Web.Code
                 .InstancePerLifetimeScope();
             //ICurrentContext
             builder.RegisterType<CurrentContext>().As<ICurrentContext>().InstancePerLifetimeScope();
-            //IFreeBirdAuthorize
-            // builder.RegisterType<SSOAuthorize>().As<ITTcmsAuthorize>().SingleInstance();
-            //IFreeBirdAuthorize
-            builder.RegisterType<SSOAuthorize>().As<ITTcmsAuthorize>().SingleInstance();
+
             //ITicketStore
             builder.RegisterType<CacheTicketStore>().As<ITicketStore>().WithStaticCache().SingleInstance();
             builder.RegisterType<CacheTicketMagage>().As<ITicketManage>().WithStaticCache().SingleInstance();
@@ -73,34 +69,7 @@ namespace TTcms.Web.Code
             // 服务
             RegisterService(builder, typeFinder);
 
-            builder.Register(c => new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString(EndPointConfig.TokenEndpointPath),
-                Provider = new BSSOOAuthProvider(),
-                AuthorizeEndpointPath = new PathString(EndPointConfig.AuthorizeEndpointPath),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                RefreshTokenProvider = new AuthenticationTokenProvider()
-                {
-                    TokenType = "RefreshToken",
-                    TokenKeepingPredicate = data => data.GrantType == GrantTypes.RefreshToken,
-                    ExpireTimeSpan = TimeSpan.FromDays(60)
-                },
-                AccessTokenProvider = new AuthenticationTokenProvider()
-                {
-                    TokenType = "AccessToken",
-                    ExpireTimeSpan = TimeSpan.FromHours(2)
-                },
-                AuthorizationCodeProvider = new AuthenticationTokenProvider()
-                {
-                    TokenType = "AuthorizationCode",
-                    ExpireTimeSpan = TimeSpan.FromMinutes(15),
-                    RemoveWhenReceive = true
-                },
-                //在生产模式下设 AllowInsecureHttp = false
-#if DEBUG
-                AllowInsecureHttp = true
-#endif
-            }).As<OAuthAuthorizationServerOptions>().SingleInstance();
+
 
             //控制器
             builder.RegisterControllers(typeof(MvcApplication).Assembly);

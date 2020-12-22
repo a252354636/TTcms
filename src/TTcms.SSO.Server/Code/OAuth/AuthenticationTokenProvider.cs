@@ -45,7 +45,9 @@ namespace TTcms.SSO.Server.Code.OAuth
             }
             return 1;
         }
-
+        /// <summary>
+        /// 生成 refresh_token
+        /// </summary>
         public override void Create(AuthenticationTokenCreateContext context)
         {
             var startDate = DateTime.UtcNow;
@@ -83,7 +85,9 @@ namespace TTcms.SSO.Server.Code.OAuth
             TicketManage.SetTicketValue(grantData);
             context.SetToken(tokenValue);
         }
-
+        /// <summary>
+        /// 由 refresh_token 解析成 access_token
+        /// </summary>
         public override void Receive(AuthenticationTokenReceiveContext context)
         {
             GrantData grantData = new GrantData()

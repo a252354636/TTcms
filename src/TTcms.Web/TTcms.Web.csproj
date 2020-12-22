@@ -190,10 +190,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Code\ClaimsIdentityCreate.cs" />
-    <Compile Include="Code\OAuth\AuthenticationTokenProvider.cs" />
-    <Compile Include="Code\OAuth\BSSOOAuthProvider.cs" />
-    <Compile Include="Code\Authorize\SSOAuthorize.cs" />
     <Compile Include="Code\DependencyRegistrar.cs" />
     <Compile Include="Code\DependencyRegistrarService.cs" />
     <Compile Include="Code\RandomOAuthStateGenerator.cs" />
