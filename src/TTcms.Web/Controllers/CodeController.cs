@@ -20,7 +20,7 @@ namespace TTcms.Web.Controllers
 
         private const string _serverTokenUrl = _serverUrl + "/Token";
 
-        private const string _serverTicketMessageUrl = _serverUrl + "/TicketUser/TicketMessage";
+        private const string _serverTicketMessageUrl = _serverUrl + "/TicketUser/GetTicketMessage";
 
         public CodeController()
         {

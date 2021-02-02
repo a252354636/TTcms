@@ -30,7 +30,10 @@ namespace TTcms.SSO.Server
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Login")
             });
-
+            //app.Use(async (context, next) => {
+            //    context.Response.Headers.Set("Access-Control-Allow-Origin", "*");
+            //    await next();
+            //});
             // 针对基于 OAuth 的流配置应用程序
             OAuthOptions = EngineContext.Current.Resolve<OAuthAuthorizationServerOptions>();
 

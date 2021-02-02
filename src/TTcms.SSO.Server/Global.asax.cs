@@ -21,7 +21,7 @@ namespace TTcms.SSO.Server
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+      
             //类型转换（automap）
             TypeAdapterFactory.SetCurrent(new AutomapperTypeAdapterFactory());
             //初始化IOC
