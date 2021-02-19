@@ -87,7 +87,7 @@ namespace TTcms.WebMVC
     }
     static class ServiceCollectionExtensions
     {
-        // Adds all Http client services (like Service-Agents) using resilient Http requests based on HttpClient factory and Polly's policies 
+        //使用基于HttpClient factory和Polly的策略的弹性Http请求添加所有Http客户端服务(如service - agent)
         public static IServiceCollection AddHttpClientServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -96,7 +96,7 @@ namespace TTcms.WebMVC
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
             services.AddTransient<HttpClientRequestIdDelegatingHandler>();
 
-            //set 5 min as the lifetime for each HttpMessageHandler int the pool
+            //设置池中每个HttpMessageHandler的生命周期为5分钟
             services.AddHttpClient("extendedhandlerlifetime").SetHandlerLifetime(TimeSpan.FromMinutes(5)).AddDevspacesSupport();
 
             //add http client services
@@ -170,7 +170,7 @@ namespace TTcms.WebMVC
             {
                 services.AddDataProtection(opts =>
                 {
-                    opts.ApplicationDiscriminator = "eshop.webmvc";
+                    opts.ApplicationDiscriminator = "ttcms.webmvc";
                 })
                 .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(configuration["DPConnectionString"]), "DataProtection-Keys");
             }

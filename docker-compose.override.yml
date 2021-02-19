@@ -43,7 +43,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - CatalogUrl=http://ttcms.catalog.api
-      - IdentityUrl=http://10.0.75.1:5105
+      - IdentityUrl=http://ttcms.identity.api
       - PurchaseUrl=http://ttcms.basket.api
       - MvcClient=http://ttcms.webmvc
       - ASPNETCORE_URLS=http://0.0.0.0:80
