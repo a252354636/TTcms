@@ -15,7 +15,7 @@
       "environmentVariables": {
         "ConnectionString": "server=localhost;Database=TTcms.Services.CatalogDb;User Id=sa;Password=123456",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "EventBusConnection": "localhost",
+        "EventBusConnection": "192.168.1.53",
         "Serilog:SeqServerUrl": "http://locahost:5340",
         "Serilog:LogstashgUrl": "http://locahost:8080"
       }

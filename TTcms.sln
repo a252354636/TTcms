@@ -59,7 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTcms.Basket.API", "src\Ser
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{94DC6689-B1A7-4CAC-A0EA-7BDDA2C3C5FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTcms.Ordering.API", "src\Services\Ordering\TTcms.Ordering.API\TTcms.Ordering.API.csproj", "{2CDCE942-4BBC-4EBB-BC3D-B960CC42715B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTcms.Ordering.API", "src\Services\Ordering\TTcms.Ordering.API\TTcms.Ordering.API.csproj", "{2CDCE942-4BBC-4EBB-BC3D-B960CC42715B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{95B05744-B00D-488A-8E37-F78801B97976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +145,10 @@ Global
 		{2CDCE942-4BBC-4EBB-BC3D-B960CC42715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CDCE942-4BBC-4EBB-BC3D-B960CC42715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CDCE942-4BBC-4EBB-BC3D-B960CC42715B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B05744-B00D-488A-8E37-F78801B97976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B05744-B00D-488A-8E37-F78801B97976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B05744-B00D-488A-8E37-F78801B97976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B05744-B00D-488A-8E37-F78801B97976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
