@@ -5,20 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - SpaClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5104
-      - XamarinCallback=http://${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP}:5105/xamarincallback      #localhost do not work for UWP login, so we have to use "external" IP always
-      - ConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=sql.data;Database=Microsoft.eShopOnContainers.Service.IdentityDb;User Id=sa;Password=Pass@word} 
-      - MvcClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5100              #Local: You need to open your local dev-machine firewall at range 5100-5110. 
-      - LocationApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5109
-      - MarketingApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5110
-      - BasketApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5103
-      - OrderingApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5102
-      - MobileShoppingAggClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5120
-      - WebShoppingAggClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5121
-      - WebhooksApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5113
-      - WebhooksWebClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5114
-      - UseCustomizationData=True  
-      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
+      - MvcClient=http://docker.for.win.localhost:5100              #Local: You need to open your local dev-machine firewall at range 5100-5110. 
       - OrchestratorType=${ORCHESTRATOR_TYPE}
     ports:
       - "5105:80"
@@ -43,19 +30,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - CatalogUrl=http://ttcms.catalog.api
-      - IdentityUrl=http://ttcms.identity.api
+      - IdentityUrl=http://docker.for.win.localhost:5105
       - PurchaseUrl=http://ttcms.basket.api
-      - MvcClient=http://ttcms.webmvc
+      - CallBackUrl=http://docker.for.win.localhost:5100
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - PurchaseUrl=http://webshoppingapigw
-      - MarketingUrl=http://webmarketingapigw                                                          
-      - SignalrHubUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5202
-      - IdentityUrlHC=http://identity.api/hc
-      - PurchaseUrlHC=http://webshoppingapigw/hc
-      - MarketingUrlHC=http://webmarketingapigw/hc 
-      - UseCustomizationData=True
-      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
-      - OrchestratorType=${ORCHESTRATOR_TYPE}
       - UseLoadTest=${USE_LOADTEST:-False}
       
     ports:
