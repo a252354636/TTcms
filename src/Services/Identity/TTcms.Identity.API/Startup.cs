@@ -18,6 +18,9 @@ using Autofac.Extensions.DependencyInjection;
 using TTcms.Identity.API.Certificates;
 using TTcms.Identity.API.Services;
 using IdentityServer4.Services;
+using TTcms.Services.Identity.API.Devspaces;
+using StackExchange.Redis;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace TTcms.Identity.API
 {
@@ -48,8 +51,19 @@ namespace TTcms.Identity.API
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<AppSettings>(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+            if (Configuration.GetValue<string>("IsClusterEnv") == bool.TrueString)
+            {
+                services.AddDataProtection(opts =>
+                {
+                    opts.ApplicationDiscriminator = "ttcms.identity";
+                })
+                .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(Configuration["DPConnectionString"]), "DataProtection-Keys");
+            }
 
             services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
             services.AddTransient<IRedirectService, RedirectService>();
@@ -62,7 +76,7 @@ namespace TTcms.Identity.API
                 x.IssuerUri = "null";
                 x.Authentication.CookieLifetime = TimeSpan.FromHours(2);
             })
-            //.AddDevspacesIfNeeded(Configuration.GetValue("EnableDevspaces", false))
+            .AddDevspacesIfNeeded(Configuration.GetValue("EnableDevspaces", false))
             .AddSigningCredential(Certificate.Get())
             .AddAspNetIdentity<ApplicationUser>()
             .AddConfigurationStore(options =>

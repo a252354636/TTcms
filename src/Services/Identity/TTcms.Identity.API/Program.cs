@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using TTcms.Identity.API.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace TTcms.Identity.API
 {
@@ -17,39 +19,52 @@ namespace TTcms.Identity.API
     {
         public static readonly string Namespace = typeof(Program).Namespace;
         public static readonly string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             Log.Information("Configuring web host ({ApplicationContext})...", AppName);
             var configuration = GetConfiguration();
 
             Log.Logger = CreateSerilogLogger(configuration);
 
-            Log.Information("Configuring web host ({ApplicationContext})...", AppName);
-            var host = BuildWebHost(configuration, args);
-            Log.Information("Applying migrations ({ApplicationContext})...", AppName);
+            try
+            {
+                Log.Information("Configuring web host ({ApplicationContext})...", AppName);
+                var host = BuildWebHost(configuration, args);
+                Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
 
-            //host.MigrateDbContext<PersistedGrantDbContext>((_, __) => { })
-            //    .MigrateDbContext<ApplicationDbContext>((context, services) =>
-            //    {
-            //        var env = services.GetService<IHostingEnvironment>();
-            //        var logger = services.GetService<ILogger<ApplicationDbContextSeed>>();
-            //        var settings = services.GetService<IOptions<AppSettings>>();
+                //host.MigrateDbContext<PersistedGrantDbContext>((_, __) => { })
+                //    .MigrateDbContext<ApplicationDbContext>((context, services) =>
+                //    {
+                //        var env = services.GetService<IHostingEnvironment>();
+                //        var logger = services.GetService<ILogger<ApplicationDbContextSeed>>();
+                //        var settings = services.GetService<IOptions<AppSettings>>();
 
-            //        new ApplicationDbContextSeed()
-            //            .SeedAsync(context, env, logger, settings)
-            //            .Wait();
-            //    })
-            //    .MigrateDbContext<ConfigurationDbContext>((context, services) =>
-            //    {
-            //        new ConfigurationDbContextSeed()
-            //            .SeedAsync(context, configuration)
-            //            .Wait();
-            //    });
+                //        new ApplicationDbContextSeed()
+                //            .SeedAsync(context, env, logger, settings)
+                //            .Wait();
+                //    })
+                //    .MigrateDbContext<ConfigurationDbContext>((context, services) =>
+                //    {
+                //        new ConfigurationDbContextSeed()
+                //            .SeedAsync(context, configuration)
+                //            .Wait();
+                //    });
 
 
-            Log.Information("Starting web host ({ApplicationContext})...", AppName);
-            host.Run();
+                Log.Information("Starting web host ({ApplicationContext})...", AppName);
+                host.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Program terminated unexpectedly ({ApplicationContext})!", AppName);
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         private static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
