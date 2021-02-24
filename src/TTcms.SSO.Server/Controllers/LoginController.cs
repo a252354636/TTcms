@@ -30,10 +30,6 @@ namespace TTcms.SSO.Server.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated)
-            {
-                return Redirect("~/Admin/Home");
-            }
             return View();
         }
 

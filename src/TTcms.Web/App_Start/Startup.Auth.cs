@@ -41,7 +41,10 @@ namespace TTcms.Web
             TTcmsSSOOption.Scope.Add("user-base");
             app.UseSSOAccountAuthentication(TTcmsSSOOption);
 
-
+            app.Use(async (context, next) => {
+                context.Response.Headers.Set("Access-Control-Allow-Origin", "*");
+                await next();
+            });
             // 取消注释以下行可允许使用第三方登录提供程序登录
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",

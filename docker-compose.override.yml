@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  seq:
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5340:80"
+
+  ttcms.identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - MvcClient=http://172.17.0.1:5100   #Local: You need to open your local dev-machine firewall at range 5100-5110. 
+      - OrchestratorType=${ORCHESTRATOR_TYPE}
+      - UseCustomizationData=True
+    ports:
+      - "5105:80"
+
+
+  ttcms.basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://ttcms.identity.api  
+    ports:
+      - "5103:80"
+
+
+  ttcms.catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5101:80"
+
+
+
+  ttcms.webmvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CatalogUrl=http://ttcms.catalog.api
+      - IdentityUrl=http://192.168.1.53:5105
+      - PurchaseUrl=http://ttcms.basket.api
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - UseCustomizationData=True
+      - OrchestratorType=${ORCHESTRATOR_TYPE}
+      - UseLoadTest=${USE_LOADTEST:-False}
+      
+    ports:
+      - "5100:80"
+

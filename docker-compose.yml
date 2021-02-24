@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  seq:
+    image: datalust/seq:latest
+
+  ttcms.identity.api:
+    image: ${DOCKER_REGISTRY-}ttcmsidentityapi
+    build:
+      context: .
+      dockerfile: src/Services/Identity/TTcms.Identity.API/Dockerfile
+
+
+
+  ttcms.basket.api:
+    image: ${DOCKER_REGISTRY-}ttcmsbasketapi
+    build:
+      context: .
+      dockerfile: src/Services/Basket/TTcms.Basket.API/Dockerfile
+
+
+  ttcms.catalog.api:
+    image: ${DOCKER_REGISTRY-}ttcmscatalogapi
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/TTcms.Catalog.API/Dockerfile
+
+
+  ttcms.webmvc:
+    image: ${DOCKER_REGISTRY-}ttcmswebmvc
+    build:
+      context: .
+      dockerfile: src/Web/TTcms.WebMVC/Dockerfile
+    depends_on:
+      - ttcms.identity.api
+      - ttcms.basket.api
+      - ttcms.catalog.api

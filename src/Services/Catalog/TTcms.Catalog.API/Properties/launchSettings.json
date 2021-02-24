@@ -1,0 +1,32 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5101",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ConnectionString": "server=localhost;Database=TTcms.Services.CatalogDb;User Id=sa;Password=123456",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EventBusConnection": "192.168.1.53",
+        "Serilog:SeqServerUrl": "http://locahost:5340",
+        "Serilog:LogstashgUrl": "http://locahost:8080"
+      }
+    },
+    "TTcms.Catalog.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5101/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

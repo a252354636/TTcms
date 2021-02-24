@@ -5,28 +5,13 @@
 }
 <div class="box box-default color-palette-box">
     <div class="box-header with-border">
-        <h3 class="box-title"><i class="fa fa-tag"></i>通过authorization code授权模式申请令牌 </h3>
+        <h3 class="box-title"><i class="fa fa-tag"></i> 用户信息 </h3>
     </div>
     <div class="box-body">
 
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="small-box bg-aqua">
-                    <div class="inner">
-                  
-                        <p>TTcmsSSO授权</p>
-                    </div>
-                    <div class="icon">
-                        <li class="fa">
-                            <img class="img-circle" style="width:90px;height:90px;vertical-align:top" src="" alt="App">
-                        </li>
-                    </div>
-                    @{
-                        var state = RandomOAuthStateGenerator.Generate(32);
-                        var url = $"http://localhost:8550/GrantCode/Authorize?client_id=1&redirect_uri={Url.Encode("http://localhost:6111/api/Code/App1")}&response_type=code&scope=user_base&state={state}";
-                    }
-                    <span id="@url" class="small-box-footer spana">
-                        进入<i class="fa fa-arrow-circle-right"></i>
-                    </span>
+            
                 </div>
             </div>
 

@@ -29,7 +29,7 @@ namespace TTcms.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            //CorsConfig.RegisterCors(GlobalConfiguration.Configuration);
 
             ////类型转换（automap）
             //TypeAdapterFactory.SetCurrent(new AutomapperTypeAdapterFactory());

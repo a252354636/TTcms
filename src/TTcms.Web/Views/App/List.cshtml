@@ -56,11 +56,12 @@
                     </div>
                     @{
                         var state = RandomOAuthStateGenerator.Generate(32);
-                        var url = $"http://localhost:8550/GrantCode/Authorize?client_id={app.ClientID}&redirect_uri={Url.Encode(app.ReturnUrl)}&response_type=code&scope=user_base&state={state}";
+                        var url = $"http://localhost:5000/GrantCode/Authorize?client_id={app.ClientID}&redirect_uri={Url.Encode(app.ReturnUrl)}&response_type=code&scope=user_base&state={state}";
                     }
-                    <span id="@url" class="small-box-footer spana">
+                    <a href="@url" class="small-box-footer spana">
                         进入<i class="fa fa-arrow-circle-right"></i>
-                    </span>
+                    </a>
+                 
                 </div>
             </div>
                         }
