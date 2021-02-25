@@ -7,7 +7,7 @@ services:
   ttcms.identity.api:
     image: ${DOCKER_REGISTRY-}ttcmsidentityapi
     build:
-      context: .
+      context: ./
       dockerfile: ./src/Services/Identity/TTcms.Identity.API/Dockerfile
 
 
