@@ -7,7 +7,7 @@ WORKDIR ./src
 COPY ./src/Services/Identity/TTcms.Identity.API/TTcms.Identity.API.csproj src/Services/Identity/TTcms.Identity.API/
 RUN dotnet restore ./src/Services/Identity/TTcms.Identity.API/TTcms.Identity.API.csproj
 COPY . .
-WORKDIR ./src/src/Services/Identity/TTcms.Identity.API
+WORKDIR src/src/Services/Identity/TTcms.Identity.API
 RUN dotnet build TTcms.Identity.API.csproj -c Release -o /app
 
 FROM build AS publish
