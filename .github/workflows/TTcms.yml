@@ -42,7 +42,7 @@ jobs:
           context: ./
           file: ./src/Services/Identity/TTcms.Identity.API/Dockerfile
           push: true
-          tags: ushamandya/simplewhale:latest
+          tags: ushamandya/simplewhaleci:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
